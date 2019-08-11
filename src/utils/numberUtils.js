@@ -1,5 +1,7 @@
 /**
  *
+ * @description Rounds flouting point numbers to the specified length for the decimals.
+ *
  * @param {number} num the number to be rounded
  * @param {number} fractionLength the maximum length of the decimals
  * @returns {number}
