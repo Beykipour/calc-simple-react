@@ -14,7 +14,7 @@ const CalculatorDisplay = props => {
             {!!lastResult && (
                 <div className={'c-calculator__last-result'}>{lastResult}</div>
             )}
-            {currentNum}
+            {!!currentNum && currentNum}
         </div>
     );
 };

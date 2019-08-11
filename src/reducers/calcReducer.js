@@ -17,7 +17,8 @@ export default (state = initialState, action) => {
         case calcActionTypes.ADD:
             return {
                 ...state,
-                lastResult: state.lastResult + state.current,
+                // lastResult: state.lastResult + state.current,
+                lastResult: state.lastOperation ? operations[state.lastOperation](state.lastResult, state.current) : state.current,
                 current: 0,
                 lastOperation: calcActionTypes.ADD,
             };
@@ -25,7 +26,7 @@ export default (state = initialState, action) => {
         case calcActionTypes.SUB:
             return {
                 ...state,
-                lastResult: state.lastResult !== 0 ? state.lastResult - state.current : state.current,
+                lastResult: state.lastOperation ? operations[state.lastOperation](state.lastResult, state.current) : state.current,
                 current: 0,
                 lastOperation: calcActionTypes.SUB,
             };
