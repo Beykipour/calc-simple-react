@@ -1,5 +1,6 @@
 import {calcActionTypes} from '../constants/actionTypes';
 import {operations} from "../constants/operations";
+import {roundNumber} from "../utils/numberUtils";
 
 const initialState = {
     lastResult: 0,
@@ -14,7 +15,7 @@ export default (state = initialState, action) => {
     const {type, payload} = action;
     const {lastOperation, lastResult, current, isDecimal} = state;
 
-    const applyOperation = () => !!lastOperation ? operations[lastOperation](lastResult, current) : current;
+    const applyOperation = () => !!lastOperation ? roundNumber(operations[lastOperation](lastResult, current)) : current;
 
     switch (type) {
 
