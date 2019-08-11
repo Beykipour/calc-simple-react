@@ -6,6 +6,7 @@ import {
     updateCurrentNumAction,
     calculateAction,
     clearAllAction,
+    decimalSetAction,
 } from "../actions/calcActions";
 import PropTypes from 'prop-types';
 
@@ -17,6 +18,7 @@ const CalculatorKeypad = props => {
         updateCurrentNumAction,
         calculateAction,
         clearAllAction,
+        decimalSetAction,
     } = props;
 
     const handleNewEntry = e => updateCurrentNumAction(parseInt(e.target.value));
@@ -37,7 +39,6 @@ const CalculatorKeypad = props => {
                     onClick={handleNewEntry}>9
             </button>
             <button className={"c-calculator__key c-calculator__key--operator"}
-                    value={"+"}
                     onClick={addAction}>+
             </button>
 
@@ -54,7 +55,6 @@ const CalculatorKeypad = props => {
                     onClick={handleNewEntry}>6
             </button>
             <button className={"c-calculator__key c-calculator__key--operator"}
-                    value={"-"}
                     onClick={subAction}>-
             </button>
 
@@ -71,12 +71,10 @@ const CalculatorKeypad = props => {
                     onClick={handleNewEntry}>3
             </button>
             <button className={"c-calculator__key c-calculator__key--equal"}
-                    value={"="}
                     onClick={calculateAction}>=
             </button>
 
             <button className={"c-calculator__key c-calculator__key--ac"}
-                    value="ac"
                     onClick={clearAllAction}>AC
             </button>
             <button className={"c-calculator__key c-calculator__key--num"}
@@ -84,8 +82,7 @@ const CalculatorKeypad = props => {
                     onClick={handleNewEntry}>0
             </button>
             <button className={"c-calculator__key c-calculator__key--decimal"}
-                    value={"."}
-                    onClick={null}>.
+                    onClick={decimalSetAction}>.
             </button>
 
         </div>
@@ -98,6 +95,7 @@ CalculatorKeypad.propTypes = {
     updateCurrentNumAction: PropTypes.func,
     calculateAction: PropTypes.func,
     clearAllAction: PropTypes.func,
+    decimalSetAction: PropTypes.func,
 };
 
 export default connect(null, {
@@ -106,4 +104,5 @@ export default connect(null, {
     updateCurrentNumAction,
     calculateAction,
     clearAllAction,
+    decimalSetAction,
 })(CalculatorKeypad);

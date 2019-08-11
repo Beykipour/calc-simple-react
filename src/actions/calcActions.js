@@ -27,3 +27,8 @@ export const clearAllAction = () => ({
     payload: null,
 });
 
+export const decimalSetAction = () => ({
+    type: calcActionTypes.DECIMAL_SET,
+    payload: null,
+});
+
