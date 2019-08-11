@@ -1,4 +1,6 @@
+import {calcActionTypes} from "./actionTypes";
+
 export const operations = {
-    ADD: (a, b) => a + b,
-    SUB: (a, b) => a - b,
+    [calcActionTypes.ADD]: (a, b) => a + b,
+    [calcActionTypes.SUB]: (a, b) => a - b,
 };

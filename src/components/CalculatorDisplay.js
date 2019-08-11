@@ -1,14 +1,30 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
-class CalculatorDisplay extends React.PureComponent {
+const CalculatorDisplay = props => {
 
-    render() {
-        return (
-            <div className={'c-calculator__display'}>
-                2123122312312312
-            </div>
-        );
-    }
-}
+    const {
+        currentNum,
+        lastResult,
+    } = props;
 
-export default CalculatorDisplay;
+    return (
+        <div className={'c-calculator__display'}>
+            {!!lastResult && (
+                <div className={'c-calculator__last-result'}>{lastResult}</div>
+            )}
+            {currentNum}
+        </div>
+    );
+};
+
+CalculatorDisplay.propTypes = {
+    currentNum: PropTypes.number,
+    lastResult: PropTypes.number,
+};
+
+export default connect(state => ({
+    currentNum: state.calc.current,
+    lastResult: state.calc.lastResult,
+}))(CalculatorDisplay);
