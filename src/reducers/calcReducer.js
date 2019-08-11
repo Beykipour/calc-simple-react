@@ -11,14 +11,17 @@ const initialState = {
 export default (state = initialState, action) => {
 
     const {type, payload} = action;
+    const {lastOperation, lastResult, current} = state;
+
+    const applyOperation = () => lastOperation ? operations[lastOperation](lastResult, current) : current;
 
     switch (type) {
 
         case calcActionTypes.ADD:
             return {
                 ...state,
-                // lastResult: state.lastResult + state.current,
-                lastResult: state.lastOperation ? operations[state.lastOperation](state.lastResult, state.current) : state.current,
+                // lastResult: lastResult + current,
+                lastResult: applyOperation(),
                 current: 0,
                 lastOperation: calcActionTypes.ADD,
             };
@@ -26,7 +29,7 @@ export default (state = initialState, action) => {
         case calcActionTypes.SUB:
             return {
                 ...state,
-                lastResult: state.lastOperation ? operations[state.lastOperation](state.lastResult, state.current) : state.current,
+                lastResult: applyOperation(),
                 current: 0,
                 lastOperation: calcActionTypes.SUB,
             };
@@ -35,14 +38,14 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 lastResult: 0,
-                current: operations[state.lastOperation](state.lastResult, state.current),
+                current: applyOperation(),
                 lastOperation: '',
             };
 
         case calcActionTypes.UPDATE_CURRENT_NUM:
             return {
                 ...state,
-                current: state.current * 10 + payload.entry,
+                current: current * 10 + payload.entry,
             };
 
         case calcActionTypes.CLEAR_ALL:

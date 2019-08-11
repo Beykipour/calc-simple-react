@@ -7,11 +7,12 @@ const CalculatorDisplay = props => {
     const {
         currentNum,
         lastResult,
+        hasLastOperation,
     } = props;
 
     return (
         <div className={'c-calculator__display'}>
-            {!!lastResult && (
+            {hasLastOperation && (
                 <div className={'c-calculator__last-result'}>{lastResult}</div>
             )}
             {!!currentNum && currentNum}
@@ -22,9 +23,11 @@ const CalculatorDisplay = props => {
 CalculatorDisplay.propTypes = {
     currentNum: PropTypes.number,
     lastResult: PropTypes.number,
+    lastOperation: PropTypes.string,
 };
 
 export default connect(state => ({
     currentNum: state.calc.current,
     lastResult: state.calc.lastResult,
+    hasLastOperation: !!state.calc.lastOperation,
 }))(CalculatorDisplay);
