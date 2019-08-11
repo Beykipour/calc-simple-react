@@ -1,16 +1,10 @@
-* {
-  margin: 0;
-  padding: 0;
-  outline: none;
+html {
   box-sizing: border-box;
+  font-size: 62.5%;
 }
 
-html,
-body {
-  font-family: $global-font;
-  font-weight: $global-font-weight;
-  direction: ltr;
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*, *::before, *::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }

@@ -1,9 +1,8 @@
 .c-calculator {
   width: 200px;
   height: 250px;
-  @include flex(
-          $direction: column
-  );
+  display: flex;
+  flex-direction: column;
 
   @include e(display) {
     border: solid 1px gray;
@@ -12,7 +11,36 @@
   }
 
   @include e(keypad) {
+    padding: 10px;
     border: solid 1px gray;
     flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+  }
+
+  @include e(key) {
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px rgb(230, 230, 231);
+    border-radius: 3px;
+    background: linear-gradient(45deg, white, #f1f1f1);
+
+    &:hover {
+      box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(135deg, white, #f1f1f1);
+    }
+
+    @include m(equal) {
+      grid-row-start: 3;
+      grid-row-end: 5;
+      grid-column-start: 4;
+      grid-column-end: 5;
+    }
   }
 }
